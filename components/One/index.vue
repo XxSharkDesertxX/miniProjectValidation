@@ -72,20 +72,7 @@
             return patt.test(value)|| 'invalid p-hone - please write number ...'
           },
 
-          cahgneEn:value=>{
-            const per = ["۰","۱","۲","۳","۴","۵","۶","۷","۸","۹",]
-            const en = ["0","1","2","3","4","5","6","7","8","9",]
-            let values = value.charAt(value.length-1)
-
-          for (let i = 0; i < per.length; i++) {
-            const element = per[i];
-
-           if (values == element) {
-              values = en[i]
-              console.log(values)
-           }
-          }
-          }
+          cahgneEn:v => /^[0-9\s]*$/.test(v) || 'Only get number En',
         },
       }
     },
