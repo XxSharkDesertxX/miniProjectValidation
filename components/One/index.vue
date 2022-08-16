@@ -12,6 +12,9 @@
             :label='one'
             counter
             maxlength="20"
+            @keyup="showusername"
+              ref="observer"
+              :v-slot="{ invalid }"
           ></v-text-field>
         </v-col>
 
@@ -41,6 +44,7 @@
         
       </v-row>
     </v-container>
+      <h1>{{username | Capi}}</h1>
   </v-form>
 </template>
 
@@ -56,10 +60,12 @@
         title: '',
         email: '',
         phone:'',
+        username:'',
+        invalid:'',
         rules: {
           required: value => !!value || 'Required.',
           counter: value => value.length <= 20 || 'Max 20 characters',
-          english: v => /^[a-zA-Z0-9\s]*$/.test(v) || 'Only get characters , En and Number',
+          english: v => /^[a-zA0-9\s]*$/.test(v) || 'Only get characters , En and Number',
           number:value => value[0] == '0' & value[1] =='9' || 'Number must starter with 09 ......',
           counters : value => value.length ==11 || 'Min 11 characters',
           email: value => {
@@ -74,6 +80,15 @@
 
           cahgneEn:v => /^[0-9\s]*$/.test(v) || 'Only get number En',
         },
+      }
+    },
+    methods: {
+      showusername(){
+        if (this.$refs.observer.valid) {
+          this.username = this.$hello(this.title)
+        }else{
+          return; 
+        }
       }
     },
   }
